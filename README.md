@@ -787,11 +787,15 @@ The renderer only reveals what structure already admitted.
 
 Run:
 
-`python demo/s_coordinate.py`
+```
+python demo/s_coordinate.py
+```
 
 Run again:
 
-`python demo/s_coordinate.py`
+```
+python demo/s_coordinate.py
+```
 
 Expected:
 
@@ -819,7 +823,9 @@ to:
 
 Run:
 
-`python demo/s_coordinate.py`
+```
+python demo/s_coordinate.py
+```
 
 Expected:
 
