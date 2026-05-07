@@ -16,6 +16,8 @@
 ![Reference-Engine](https://img.shields.io/badge/Engine-Reference%20v1.0-blue)
 ![Open-Standard](https://img.shields.io/badge/Reference-Open%20Standard-blue)
 
+![Verify](https://github.com/OMPSHUNYAYA/S-Coordinate/actions/workflows/s-coordinate-verify.yml/badge.svg)
+
 > **A coordinate can exist numerically and still be structurally inadmissible.**  
 > S-Coordinate demonstrates it in ~540 bytes.
 
