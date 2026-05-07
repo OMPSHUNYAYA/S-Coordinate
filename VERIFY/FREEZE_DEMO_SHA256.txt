@@ -1,0 +1,10 @@
+S-Coordinate - Hash Freeze (SHA256)
+
+demo\s_coordinate.py
+SHA256: a431a74e1645d4a66a6b4fc7bbf3d641b89de5f484114365431408de03459e08
+
+demo\s_coordinate_visual.py
+SHA256: 6eb5df0b00058168f75ebefdd8bfea00064c78fdce00ac5b3b24eea1ceae9aaa
+
+same file -> same hash
+different file -> different hash

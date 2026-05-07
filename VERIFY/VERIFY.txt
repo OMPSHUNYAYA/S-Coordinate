@@ -1,0 +1,316 @@
+S-Coordinate Verification — Structural Coordinate Resolution
+
+1. Open the reference demonstration
+
+Option A (recommended)
+
+python s_coordinate.py
+
+Option B (from repository root)
+
+python demo/s_coordinate.py
+
+Optional visual demonstration
+
+python demo/s_coordinate_visual.py
+
+2. Observe
+
+deterministic structural coordinate admissibility
+no blind spatial assumption required for admissibility
+no rendering dependency for admissibility
+no GPS trust dependency for admissibility
+no map-layer dependency for admissibility
+no external libraries
+
+Coordinate admissibility is not produced by rendering — it is determined by structure.
+
+Rendering state does not determine admissibility.
+Only structural sufficiency does.
+
+3. Expected baseline states
+
+Complete structure
+coordinate_visibility: VISIBLE
+structural_maturity: True
+certificate: <stable hash>
+
+Incomplete structure
+coordinate_visibility: NOT_VISIBLE
+structural_maturity: False
+reason: missing required structure
+
+Conflicting structure
+coordinate_visibility: NOT_VISIBLE
+structural_maturity: False
+reason: conflicting structure
+
+Rendering variation
+rendering_state: CHANGED
+coordinate_visibility: VISIBLE
+
+If structure remains complete AND consistent, rendering variation does not affect admissibility.
+
+4. Structural resolution rule
+
+structure_complete = TRUE AND structure_consistent = TRUE
+
+coordinate_visible iff S = RESOLVED AND tau = VALID AND sigma_deterministic
+
+resolve(S, D1) = resolve(S, D2) for all dependency states D1, D2
+
+coordinate_visibility = resolve(structure)
+
+5. Expected behavior
+
+complete structure     -> VISIBLE -> admissibility visible
+
+incomplete structure   -> NOT_VISIBLE -> no admissible visibility
+
+conflicting structure  -> NOT_VISIBLE -> no admissible visibility
+
+Identical input structure produces:
+
+identical visibility
+identical visibility state
+identical certificate
+
+Rendering state does not change admissibility.
+
+6. Verify determinism
+
+Run the same demo twice:
+
+python demo/s_coordinate.py
+
+python demo/s_coordinate.py
+
+Expected
+
+same visibility
+same visibility states
+same certificates
+
+Confirm
+
+same structure -> same visibility -> same certificate
+
+6A. Verify structural invariant
+
+For identical structures:
+
+resolution identical
+coordinate_visibility identical
+certificate identical
+
+7. Verify representative cases
+
+Case 1 — Rendering variation + complete structure
+coordinate_visibility: VISIBLE
+structural_maturity: True
+certificate: <stable>
+
+Case 2 — Incomplete structure
+coordinate_visibility: NOT_VISIBLE
+structural_maturity: False
+missing component is reported
+
+Case 3 — Conflicting structure
+coordinate_visibility: NOT_VISIBLE
+structural_maturity: False
+conflict reason is reported
+
+Case 4 — Replay determinism
+first certificate == second certificate
+replay match: True
+
+Case 5 — Same structure with rendering changes
+coordinate_visibility: VISIBLE
+structural_maturity: True
+certificate matches previous complete-structure case
+
+Case 6 — Dependency invariance check
+Rendering-OFF certificate == Rendering-ON certificate
+Same visibility: True
+Same certificate: True
+
+7A. Structural Admissibility vs Rendering Dependency
+
+Compare rendering-based systems with S-Coordinate.
+
+Example
+same structure with rendering ON
+same structure with rendering OFF
+
+Expected — S-Coordinate
+admissibility remains unchanged
+certificate remains unchanged
+
+Traditional rendering-dependent interpretation
+visibility may change
+representation may disappear
+
+Observation
+
+Rendering-dependent systems may confuse representation with admissibility.
+
+S-Coordinate separates admissibility from rendering.
+
+Conclusion
+
+admissibility != rendering
+
+coordinate_visibility = resolve(structure)
+
+8. Verify distinct proof identities
+
+Different structures:
+
+complete structure
+incomplete structure
+conflicting structure
+Expected
+
+Different certificates are expected because structure has changed.
+
+Confirm
+
+different input structure -> certificate may differ
+
+9. Verify incomplete safety
+
+Remove a required coordinate or transition component.
+
+Expected
+coordinate_visibility: NOT_VISIBLE
+coordinate_visible: False
+reason: missing required structure
+
+10. Verify conflict safety
+
+Introduce contradiction or invalid admissibility condition.
+
+Expected
+coordinate_visibility: NOT_VISIBLE
+coordinate_visible: False
+reason: conflict detected
+
+11. Verify dependency independence
+
+Modify rendering or visualization states:
+
+rendering OFF
+visualization OFF
+map-layer variation
+
+Expected
+
+If structure is complete AND consistent:
+
+coordinate_visibility: VISIBLE
+certificate: unchanged
+
+resolve(S, D1) = resolve(S, D2)
+
+12. Verify admissibility consistency under rendering changes
+
+Same structure:
+
+rendering OFF
+rendering ON
+Expected
+same visibility
+same certificate
+Note
+
+Rendering state is not part of structural admissibility identity.
+
+13. Verify structural transitions
+
+complete structure      -> VISIBLE
+
+missing structure       -> NOT_VISIBLE
+
+conflicting structure   -> NOT_VISIBLE
+
+Expected
+
+State changes strictly follow structure.
+
+14. Verify certificate components
+
+Expected
+
+Certificate is derived solely from structural admissibility components, such as:
+
+coordinate_sigma
+transition_sigma
+frame_sigma
+visibility_state
+
+Rendering state does not change the certificate when structure remains identical.
+
+15. Normalization requirement
+
+normalized_visibility = normalize(Visibility)
+
+certificate = hash(normalized_visibility)
+
+Expected
+
+certificate depends only on normalized structural visibility
+representation format does not affect certificate
+rendering state does not affect certificate
+
+Implementation note
+
+SHA-256 (truncated) is used for demonstration.
+
+16. Verify file identity
+
+certutil -hashfile s_coordinate.py SHA256
+
+or from repository root:
+
+certutil -hashfile demo\s_coordinate.py SHA256
+
+Note
+file hash = file identity
+certificate = structural admissibility artifact
+
+17. Structural admissibility model
+
+resolve(structure) ->
+
+VISIBLE       if structure is complete AND consistent
+
+NOT_VISIBLE   if structure is incomplete
+
+NOT_VISIBLE   if structure is conflicting
+
+18. Core invariant
+
+coordinate_visibility = resolve(structure)
+
+coordinate_visible iff S = RESOLVED AND tau = VALID AND sigma_deterministic
+
+same structure -> same visibility -> same certificate
+
+Admissibility claims apply only within the defined structural model.
+
+19. Confirm
+
+identical input structure -> identical visibility
+identical input structure -> identical certificate
+no rendering dependency for admissibility
+no GPS trust dependency for admissibility
+no blind spatial assumption dependency
+rendering failure does not imply admissibility failure
+invalid structure does not produce admissible visibility
+
+Result
+
+Deterministic structural coordinate admissibility confirmed for S-Coordinate.
+
+Coordinate admissibility is determined by structure —
+not from rendering systems, GPS trust, visualization pipelines, or blind spatial assumptions.
