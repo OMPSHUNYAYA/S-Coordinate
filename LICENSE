@@ -1,0 +1,316 @@
+Open Standard License — S-Coordinate Reference Implementation
+
+S-Coordinate — Structural Coordinate Resolution
+Coordinate Visibility Without Blind Spatial Assumption
+
+Legal Status
+
+This license is intended as a permissive Open Standard license for the S-Coordinate reference implementation.
+To the maximum extent permitted by applicable law, it grants rights similar in spirit to permissive open-source licenses, while preserving truthful representation requirements for the S-Coordinate name and reference implementation.
+This is a custom Open Standard license and is not an OSI-approved open-source license unless separately designated.
+If any provision is found unenforceable, the remaining provisions remain in effect.
+
+Nature of Release
+
+This is a minimal, self-contained reference implementation.
+
+It is intended to demonstrate a structural coordinate admissibility model — not to represent a full geometry engine, navigation framework, rendering platform, GPS replacement, or spatial infrastructure system.
+
+Behavioral guarantees apply only within the scope of the reference model and its defined structural assumptions.
+
+Permission
+
+Permission is hereby granted, free of charge, to any person or organization to:
+
+use
+execute
+study
+reproduce
+publish
+distribute
+modify
+implement
+extend
+
+the S-Coordinate reference implementation, in whole or in part, for commercial or non-commercial use, subject only to the representation and naming conditions defined in this license.
+
+No registration, fees, or approval required.
+
+No Restrictions on Use
+
+This release is intended as an open structural reference implementation for study, implementation, extension, and interoperability.
+
+This reference implementation imposes no restrictions on usage, except:
+
+truthful representation
+non-misleading use of the S-Coordinate name
+
+Attribution is not required, but is encouraged for clarity and ecosystem integrity.
+
+No endorsement or certification is implied.
+
+No runtime obligations apply.
+
+Patent Clarification
+
+No patent rights are granted by this reference license unless explicitly stated by the authors.
+
+Separation of License and Structural Admissibility
+
+This license governs legal usage, distribution, and representation.
+
+It does not govern, alter, or override structural admissibility.
+
+Structural admissibility is defined independently by:
+
+coordinate_visibility = resolve(structure)
+
+Legal permission does not imply structural validity.
+
+Structural validity does not depend on legal permission.
+
+Practical Interpretation
+
+This license governs usage and representation.
+
+It does not govern admissibility.
+
+Coordinate admissibility within this model is determined solely by structure:
+
+structure_complete = TRUE AND structure_consistent = TRUE
+
+Licensing governs usage — not admissibility.
+
+Coordinate admissibility is a property of structure — independent of rendering, simulation, mapping, or infrastructure mechanisms.
+
+Admissibility is represented by coordinate visibility.
+
+Proof is represented by certificate.
+
+Structural proof is expressed as:
+
+same structure -> same visibility -> same certificate
+
+Different structure -> different admissibility outcome
+
+Clarification — Coordinates as Representation
+
+This statement refers specifically to coordinate admissibility as a property of structure.
+
+The reference implementation may use coordinate systems for:
+
+positional representation
+geometry
+rendering
+visualization
+navigation
+
+However, such systems are not the source of admissible reality.
+
+Admissibility is determined solely by structural sufficiency.
+
+Key distinction:
+
+Traditional systems: visibility = result of coordinate rendering
+
+S-Coordinate: visibility = result of resolved structure
+
+Rendering may reveal visibility.
+
+It does not define it.
+
+Representation & Naming
+
+Modified or extended implementations:
+
+must not be presented as the canonical S-Coordinate reference implementation unless structural behavior is preserved
+must not imply official authorship, certification, or endorsement
+
+Use of the name “S-Coordinate” must not imply:
+
+endorsement
+certification
+governance authority
+official status
+
+Recommended Attribution (Optional)
+
+Preferred form:
+
+Implements S-Coordinate — Structural Coordinate Resolution (Shunyaya Structural Model)
+
+Attribution must not imply endorsement.
+
+Scope of the Reference Implementation
+
+This release includes:
+
+structural coordinate admissibility definitions
+coordinate visibility rules
+minimal executable reference
+deterministic certificates
+visual coordinate outputs
+reference traces
+
+S-Coordinate defines a deterministic structural model where coordinate visibility emerges from structure:
+
+resolve(structure) ->
+
+VISIBLE if structure is complete AND consistent
+NOT_VISIBLE if structure is incomplete
+NOT_VISIBLE if structure is inconsistent
+
+What This Demonstrates
+coordinate admissibility without blind spatial assumption
+independence from rendering as a source of truth
+independence from GPS trust as a prerequisite for admissibility
+independence from map-layer trust
+structural resolution governing coordinate visibility
+safe handling of incomplete and conflicting structure
+deterministic and reproducible visibility states
+identical structure produces identical visibility and certificate
+Conformance
+
+An implementation is considered compatible if it preserves:
+
+structure-based coordinate admissibility
+independence from blind spatial assumption
+deterministic resolution
+structure-driven coordinate visibility
+reproducibility of visibility and certificate under equivalent inputs
+explicit handling of incomplete and conflicting structure
+
+Conformance is judged solely by observable behavior — not by internal implementation.
+
+S1 = S2 -> Visibility1 = Visibility2 -> Certificate1 = Certificate2
+
+Conflict Handling
+
+In this reference implementation:
+
+NOT_VISIBLE is explicitly defined and demonstrated
+incomplete structure produces no visible coordinate
+inconsistent conditions do not produce admissible visibility
+
+Conformance requires:
+
+no forced visibility under incomplete structure
+no arbitrary visibility under conflicting structure
+Normalization Requirement
+
+For deterministic certificate identity:
+
+normalized_visibility = normalize(Visibility)
+
+certificate = hash(normalized_visibility)
+
+Normalization ensures:
+
+independence from rendering state
+independence from representation format
+consistent certificate identity across systems and runs
+
+In the reference implementation:
+
+SHA-256 (truncated) is used for demonstration.
+
+Dependency Independence Guarantee
+
+Coordinate admissibility is invariant under dependency state:
+
+resolve(S, D1) = resolve(S, D2) for all dependency states D1, D2
+
+This ensures:
+
+dependency_failure != admissibility_failure
+
+Coordinate admissibility depends only on structure — not rendering or infrastructure state.
+
+Relationship to Shunyaya Framework
+
+S-Coordinate is part of the broader Shunyaya framework.
+
+It builds on:
+
+SLANG → correctness without execution
+ORL → correctness without ordering
+STIME → correctness without time
+STINT → correctness without connectivity
+STILE → correctness without communication
+SVARE → correctness without computation
+STIC → correctness without cloud dependency
+STRUMER → media without editing
+S-Coordinate → coordinate visibility without blind spatial assumption
+
+Each removes a dependency.
+
+Admissibility remains preserved by structure.
+
+Architecture License
+
+The conceptual architecture and documentation are licensed under:
+
+Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
+
+Permitted:
+
+research
+academic use
+study and reproduction
+non-commercial distribution
+
+Commercial use of architecture text is not permitted under this license.
+
+Full license:
+
+https://creativecommons.org/licenses/by-nc/4.0/
+
+Responsibility
+
+Use of S-Coordinate in real-world systems is entirely at the user’s own responsibility.
+
+This reference implementation provides:
+
+deterministic structural admissibility with reproducible visibility and certificates
+coordinate visibility derived from structure
+safe handling of incomplete and conflicting structure
+
+It does not provide:
+
+GPS guarantees
+navigation guarantees
+rendering guarantees
+spatial safety guarantees
+real-time guarantees
+autonomous system guarantees
+safety-critical assurances
+regulatory or compliance guarantees
+No Warranty
+
+THE S-COORDINATE REFERENCE IMPLEMENTATION IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND.
+
+THIS INCLUDES, BUT IS NOT LIMITED TO:
+
+MERCHANTABILITY
+FITNESS FOR A PARTICULAR PURPOSE
+NON-INFRINGEMENT
+
+IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM USE OF THIS IMPLEMENTATION.
+
+Closing Statement
+
+S-Coordinate explores a simple but fundamental idea:
+
+Coordinate visibility emerges deterministically from structure — without requiring blind trust in numerical position, rendering systems, or map-layer assumptions as a prerequisite.
+
+Coordinates may represent position.
+
+Structure determines whether that position becomes admissible reality.
+
+It is released to encourage:
+
+independent validation
+real-world testing
+safe experimentation
+
+S-Coordinate is offered as a minimal, verifiable reference implementation of that possibility.
